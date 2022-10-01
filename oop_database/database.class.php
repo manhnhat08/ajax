@@ -15,19 +15,19 @@
         }
         function table($sql, $header){
             $rs= $this->query($sql);
-            $fieldinfo= mysqli_fetch_field($rs);
-            $str= "<table><tr>";
+            $fieldinfo= mysqli_fetch_fields($rs);
+            $str="<table><tr>";
             foreach ($fieldinfo as $val){
-                $name= $val->name;
+                $name=$val->name;
                 $str .="<th>".$name."</th>";
 
             }
             $str.="</tr>";
             while($r=mysqli_fetch_array($rs)){
                 $str .="<tr>";
-                foreach($fieldinfo as $val){
+                foreach ($fieldinfo as $val){
                     $name= $val->name;
-                    $str .="<th>".$r[$name]."</th>";
+                    $str .="<td>".$r[$name]."</td>";
                 }
                 $str.="</tr>";
             }
